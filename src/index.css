@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Gayatri Expense Tracker - Spiritual Design System 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Base colors - Cream and warm whites */
+    --background: 45 25% 98%;
+    --foreground: 20 14% 4%;
+
+    /* Card colors - Soft cream */
+    --card: 40 20% 99%;
+    --card-foreground: 20 14% 4%;
+
+    /* Popover colors */
+    --popover: 40 20% 99%;
+    --popover-foreground: 20 14% 4%;
+
+    /* Primary - Sacred Saffron */
+    --primary: 30 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 35 100% 70%;
+
+    /* Secondary - Deep red/maroon */
+    --secondary: 0 70% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted - Warm neutral */
+    --muted: 40 15% 94%;
+    --muted-foreground: 20 8% 45%;
+
+    /* Accent - Golden */
+    --accent: 45 95% 55%;
+    --accent-foreground: 20 14% 4%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* UI elements */
+    --border: 40 20% 88%;
+    --input: 40 20% 96%;
+    --ring: 30 100% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--accent)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+
+    /* Shadows */
+    --shadow-warm: 0 4px 20px hsl(var(--primary) / 0.15);
+    --shadow-soft: 0 2px 10px hsl(20 14% 4% / 0.1);
+    --shadow-glow: 0 0 30px hsl(var(--primary-glow) / 0.3);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark theme - Deep warm colors */
+    --background: 20 20% 8%;
+    --foreground: 40 15% 95%;
+
+    --card: 20 25% 10%;
+    --card-foreground: 40 15% 95%;
+
+    --popover: 20 25% 10%;
+    --popover-foreground: 40 15% 95%;
+
+    --primary: 30 100% 65%;
+    --primary-foreground: 20 20% 8%;
+    --primary-glow: 35 100% 75%;
+
+    --secondary: 0 60% 40%;
+    --secondary-foreground: 40 15% 95%;
+
+    --muted: 20 15% 15%;
+    --muted-foreground: 40 10% 60%;
+
+    --accent: 45 90% 60%;
+    --accent-foreground: 20 20% 8%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 40 15% 95%;
+
+    --border: 20 15% 20%;
+    --input: 20 15% 15%;
+    --ring: 30 100% 65%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Custom utility classes */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+  
+  .gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+  
+  .shadow-warm {
+    box-shadow: var(--shadow-warm);
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+}
