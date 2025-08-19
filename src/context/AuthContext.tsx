@@ -57,6 +57,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setToken(storedToken);
           setUser(JSON.parse(storedUser));
           setIsAuthenticated(true);
+          navigate("/expenses", { replace: true });
         }
       } catch (error) {
         console.error('Token invalid:', error);
