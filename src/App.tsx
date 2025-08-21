@@ -15,6 +15,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import { Loader2 } from 'lucide-react';
+import Today from './pages/Today';
 
 const AppRoutes: React.FC = () => {
   const { isLoading, isAuthenticated } = useAuth();
@@ -31,7 +32,6 @@ const AppRoutes: React.FC = () => {
     <>
       <Routes>
 
-        <Route path='test' element={<ExpenseCalculator />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
 
@@ -58,6 +58,14 @@ const AppRoutes: React.FC = () => {
             element={
               <ProtectedRoute>
                 <Analytics />
+              </ProtectedRoute>
+            }
+          />
+           <Route
+            path="/today"
+            element={
+              <ProtectedRoute>
+                <Today />
               </ProtectedRoute>
             }
           />

@@ -22,15 +22,36 @@ export interface ApiItem {
 
 interface ApiResponse<T> {
   success: boolean;
-  message: string;
+  message?: string;
   data: T;
 }
 
+export interface AnalyticsData {
+  today: number;
+  week: number;
+  month: number;
+  overall: number;
+}
+
+export interface TodayItem {
+  _id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  totalprice: number;
+  createdAt: string;
+}
+
+export interface TodayData {
+  data: TodayItem[];
+  total: number;
+}
 
 // -----------------------------
 // Item Service
 // -----------------------------
 class ItemService {
+
   async createItems(items: Item[]): Promise<ApiItem[]> {
     try {
       const response = await api.post<ApiResponse<ApiItem[]>>(
@@ -52,6 +73,24 @@ class ItemService {
     }
   }
 
+  async getAnalytics(): Promise<AnalyticsData> {
+    try {
+      const res = await api.get<ApiResponse<AnalyticsData>>("/item/analytics");
+      return res.data.data;
+    } catch (err: any) {
+      throw new Error(err.response?.data?.message || "Failed to fetch analytics");
+    }
+  }
+
+
+  async getToday() {
+    try {
+      const res = await api.get<TodayData>(`/item/today`);
+      return res.data;
+    } catch (err: any) {
+      throw new Error(err.response?.data?.message || "Failed to fetch data");
+    }
+  }
 }
 
 export const itemService = new ItemService();
