@@ -132,13 +132,13 @@ const SignIn = () => {
         {/* Footer */}
         <div className="mt-6 text-center">
           <p className="text-sm text-muted-foreground">
-            Don't have an account?{' '}
-            <Link
+            Don't have an account? Please contact the admin{' '}
+            {/* <Link
               to="/signup"
               className="text-primary hover:text-primary-glow font-medium underline"
             >
               Sign up here
-            </Link>
+            </Link> */}
           </p>
         </div>
 

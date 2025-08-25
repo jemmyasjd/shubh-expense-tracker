@@ -33,7 +33,7 @@ const AppRoutes: React.FC = () => {
       <Routes>
 
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        {/* <Route path="/signup" element={<SignUp />} /> */}
 
 
         <Route element={<Layout />}>
