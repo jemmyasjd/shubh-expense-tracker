@@ -16,6 +16,7 @@ import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import { Loader2 } from 'lucide-react';
 import Today from './pages/Today';
+import Week from './pages/Week';
 
 const AppRoutes: React.FC = () => {
   const { isLoading, isAuthenticated } = useAuth();
@@ -66,6 +67,14 @@ const AppRoutes: React.FC = () => {
             element={
               <ProtectedRoute>
                 <Today />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/week"
+            element={
+              <ProtectedRoute>
+                <Week />
               </ProtectedRoute>
             }
           />

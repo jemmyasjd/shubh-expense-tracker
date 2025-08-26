@@ -91,6 +91,27 @@ class ItemService {
       throw new Error(err.response?.data?.message || "Failed to fetch data");
     }
   }
+
+
+  async getThisWeek() {
+    try {
+      const res = await api.get<TodayData>(`/item/week`);
+      return res.data;
+    } catch (err: any) {
+      throw new Error(err.response?.data?.message || "Failed to fetch data");
+    }
+  }
+
+  async getByDate(date: string) {
+    try {
+      const res = await api.post<TodayData>(`/item/by-date`, { date });
+      return res.data;
+    } catch (err: any) {
+      throw new Error(err.response?.data?.message || "Failed to fetch data");
+    }
+  }
+
+
 }
 
 export const itemService = new ItemService();
