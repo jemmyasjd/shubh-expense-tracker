@@ -122,11 +122,10 @@ const Week = () => {
             <button
               key={date}
               onClick={() => setSelectedDate(selectedDate === date ? null : date)}
-              className={`px-3 py-1 rounded-full border text-sm whitespace-nowrap ${
-                selectedDate === date
+              className={`px-3 py-1 rounded-full border text-sm whitespace-nowrap ${selectedDate === date
                   ? "bg-primary text-white"
                   : "bg-white text-gray-700 border-gray-300"
-              }`}
+                }`}
             >
               {new Date(date).toLocaleDateString("en-IN", {
                 day: "numeric",
@@ -198,14 +197,20 @@ const Week = () => {
             </div>
           )}
 
+
           {/* Total Card */}
           <Card className="mt-6 p-5 flex items-center justify-between">
-            <p className="text-lg font-semibold">Total for the Week</p>
+            <p className="text-lg font-semibold">
+              {selectedDate || search.trim() ? `Total for ${selectedDate}` : "Total for the Week"}
+            </p>
             <div className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-primary">
               <IndianRupee className="w-5 h-5 sm:w-6 sm:h-6" />
-              {total}
+              {selectedDate || search.trim()
+                ? filteredItems.reduce((sum, item) => sum + item.totalprice, 0)
+                : total}
             </div>
           </Card>
+
         </>
       )}
     </div>
