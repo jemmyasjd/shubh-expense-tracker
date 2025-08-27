@@ -201,7 +201,7 @@ const Week = () => {
           {/* Total Card */}
           <Card className="mt-6 p-5 flex items-center justify-between">
             <p className="text-lg font-semibold">
-              {selectedDate || search.trim() ? `Total for ${selectedDate}` : "Total for the Week"}
+              {selectedDate ? `Total for ${selectedDate}` : search.trim() ? "Total for Search" : "Total for the Week"}
             </p>
             <div className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-primary">
               <IndianRupee className="w-5 h-5 sm:w-6 sm:h-6" />
