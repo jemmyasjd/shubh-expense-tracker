@@ -47,6 +47,16 @@ export interface TodayData {
   total: number;
 }
 
+
+export interface MonthData {
+  data: TodayItem[];
+  totalItems: number;
+  totalPrice: number;
+  currentPage: number;
+  pageSize: number;
+}
+
+
 // -----------------------------
 // Item Service
 // -----------------------------
@@ -108,6 +118,22 @@ class ItemService {
       return res.data;
     } catch (err: any) {
       throw new Error(err.response?.data?.message || "Failed to fetch data");
+    }
+  }
+
+   async getThisMonth(body: {
+    page: number;
+    limit: number;
+    search?: string;
+    date?: string | null;
+    month?: number;
+    year?: number;
+  }) {
+    try {
+      const res = await api.post<MonthData>(`/item/month`, body);
+      return res.data;
+    } catch (err: any) {
+      throw new Error(err.response?.data?.message || "Failed to fetch month data");
     }
   }
 
