@@ -18,6 +18,7 @@ import { Loader2 } from 'lucide-react';
 import Today from './pages/Today';
 import Week from './pages/Week';
 import Month from './pages/Month';
+import OverallExpense from './pages/OverallExpense';
 
 const AppRoutes: React.FC = () => {
   const { isLoading, isAuthenticated } = useAuth();
@@ -84,6 +85,14 @@ const AppRoutes: React.FC = () => {
             element={
               <ProtectedRoute>
                 <Month />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/overall"
+            element={
+              <ProtectedRoute>
+                <OverallExpense />
               </ProtectedRoute>
             }
           />

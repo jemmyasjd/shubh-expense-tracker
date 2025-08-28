@@ -90,12 +90,13 @@ const Month = () => {
           </h1>
         </div>
         <p className="text-muted-foreground text-sm sm:text-base">
-          "धर्मो रक्षति रक्षितः" – Dharma protects those who protect it
+          Track all your expenses for this month
         </p>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
+      {/* Filters */}
+      <div className="flex flex-col gap-3 mb-5 sm:flex-row sm:items-center sm:justify-between">
         {/* Search with button */}
         <div className="flex flex-1 sm:max-w-xs border rounded-xl overflow-hidden">
           <input
@@ -117,36 +118,41 @@ const Month = () => {
           </button>
         </div>
 
-        {/* Date filter */}
-        <input
-          type="date"
-          value={selectedDate || ""}
-          max={new Date().toISOString().split("T")[0]}
-          onChange={(e) => {
-            setPage(1);
-            setSelectedDate(e.target.value || null);
-          }}
-          className="border rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-        />
+        {/* Date + Items (mobile: one row, desktop: inline anyway) */}
+        <div className="flex flex-row gap-3">
+          {/* Date filter */}
+          <input
+            type="date"
+            value={selectedDate || ""}
+            max={new Date().toISOString().split("T")[0]}
+            onChange={(e) => {
+              setPage(1);
+              setSelectedDate(e.target.value || null);
+            }}
+            className="flex-1 border rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+          />
 
-        {/* Page size dropdown */}
-        <Select
-          value={limit.toString()}
-          onValueChange={(val) => {
-            setPage(1);
-            setLimit(Number(val));
-          }}
-        >
-          <SelectTrigger className="w-[150px]">
-            <SelectValue placeholder="Select items per page" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="20">20 items</SelectItem>
-            <SelectItem value="50">50 items</SelectItem>
-            <SelectItem value="100">100 items</SelectItem>
-          </SelectContent>
-        </Select>
+          {/* Page size dropdown */}
+          <Select
+            value={limit.toString()}
+            onValueChange={(val) => {
+              setPage(1);
+              setLimit(Number(val));
+            }}
+          >
+            <SelectTrigger className="flex-1 sm:w-[150px]">
+              <SelectValue placeholder="Select items per page" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="20">20 items</SelectItem>
+              <SelectItem value="50">50 items</SelectItem>
+              <SelectItem value="100">100 items</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
+
+
 
       {/* Loading */}
       {loading ? (
@@ -155,6 +161,22 @@ const Month = () => {
         </div>
       ) : items.length > 0 ? (
         <>
+          <Card className="mb-5 p-5 flex items-center justify-between">
+            <p className="text-lg font-semibold">
+              {selectedDate
+                ? `Total for ${selectedDate}`
+                : search.trim()
+                  ? "Total for Search"
+                  : "Total for the Month"}
+            </p>
+            <div className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-primary">
+              <IndianRupee className="w-5 h-5 sm:w-6 sm:h-6" />
+              {selectedDate || search.trim()
+                ? items.reduce((sum, item) => sum + item.totalprice, 0)
+                : totalPrice}
+            </div>
+          </Card>
+
           {/* Table */}
           <div className="overflow-x-auto rounded-2xl shadow">
             <table className="w-full border-collapse text-sm md:text-base">
@@ -224,29 +246,15 @@ const Month = () => {
               </div>
             </div>
           )}
-
-          {/* Total Card */}
-          <Card className="mt-6 p-5 flex items-center justify-between">
-            <p className="text-lg font-semibold">
-              {selectedDate
-                ? `Total for ${selectedDate}`
-                : search.trim()
-                  ? "Total for Search"
-                  : "Total for the Month"}
-            </p>
-            <div className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-primary">
-              <IndianRupee className="w-5 h-5 sm:w-6 sm:h-6" />
-              {selectedDate || search.trim()
-                ? items.reduce((sum, item) => sum + item.totalprice, 0)
-                : totalPrice}
-            </div>
-          </Card>
         </>
       ) : (
         <div className="text-center text-muted-foreground py-10">
           <br /> No items found.
         </div>
       )}
+      <div className="text-center text-muted-foreground py-8 italic">
+        "धर्मो रक्षति रक्षितः" – Dharma protects those who protect it
+      </div>
     </div>
   );
 };
