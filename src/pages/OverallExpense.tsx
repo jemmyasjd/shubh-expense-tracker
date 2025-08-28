@@ -75,7 +75,7 @@ const OverallExpense = () => {
   const totalPages = Math.ceil(total / limit);
 
   return (
-    <div className="max-w-6xl mx-auto p-3 animate-fade-in">
+    <div className="max-w-5xl mx-auto p-2 animate-fade-in">
       {/* Viewport meta tag should be in your main HTML file */}
       {/* <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> */}
 
@@ -229,7 +229,7 @@ const OverallExpense = () => {
                     <td className="p-2 sm:px-3 sm:py-2">₹{item.price}</td>
                     <td className="p-2 sm:px-3 sm:py-2">{item.quantity}</td>
                     <td className="p-2 sm:px-3 sm:py-2 font-semibold">₹{item.totalprice}</td>
-                    <td className="p-2 sm:px-3 sm:py-2 whitespace-nowrap">
+                    <td className="p-2 sm:px-3 sm:py-2 whitespace-normal break-words">
                       {toISTDate(item.createdAt)}
                     </td>
                     <td className="p-2 sm:px-3 sm:py-2 whitespace-nowrap">

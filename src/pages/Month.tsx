@@ -202,7 +202,7 @@ const Month = () => {
                     <td className="p-2 sm:px-3 sm:py-2 font-semibold">
                       ₹{item.totalprice}
                     </td>
-                    <td className="p-2 sm:px-3 sm:py-2 whitespace-nowrap">
+                    <td className="p-2 sm:px-3 sm:py-2 whitespace-normal break-words">
                       {toISTDate(item.createdAt)}
                     </td>
                     <td className="p-2 sm:px-3 sm:py-2 whitespace-nowrap">
